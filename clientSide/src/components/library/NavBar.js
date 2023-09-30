@@ -12,8 +12,8 @@ function NavBar() {
                 Student Data
             </Typography>
             <Box>
-                <Button style={{margin:"0 1rem"}} component={Link} variant='outlined'>Add Data</Button>
-                <Button component={Link} variant='outlined'>Student Data</Button>
+                <Button style={{margin:"0 1rem"}} component={Link} to="/" variant='outlined'>Add Data</Button>
+                <Button component={Link} variant='outlined' to="/data">Student Data</Button>
             </Box>
         </Box>
         <Divider />

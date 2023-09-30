@@ -1,0 +1,32 @@
+/* CSS for table */
+.table-container {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* CSS for table header (thead) */
+.table-container thead {
+  background-color: #f0f0f0;
+}
+
+/* CSS for table rows (tr) */
+.table-container tr {
+  border-bottom: 1px solid #ccc;
+}
+
+/* CSS for table header cells (th) */
+.table-container th, .table-container td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Add additional styles specific to th or td as needed */
+.table-container th {
+  font-weight: bold;
+}
+
+/* Add hover effect on rows */
+.table-container tbody tr:hover {
+  background-color: #f9f9f9;
+}
