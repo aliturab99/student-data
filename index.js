@@ -101,9 +101,9 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 
 
 
-app.use(express.static(path.join(__dirname, 'dashboard/build')));
+app.use(express.static(path.join(__dirname, 'clientSide/build')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dashboard/build/index.html'));
+    res.sendFile(path.join(__dirname, 'clientSide/build/index.html'));
 });
 app.use((err, req, res, next) => {
     if (err) {
