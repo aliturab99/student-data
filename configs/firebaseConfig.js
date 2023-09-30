@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 
+=======
+const { initializeApp } = require("firebase/app");
+const { getFirestore, collection } = require("firebase/firestore/lite");
+>>>>>>> Stashed changes
 const firebaseConfig = {
   apiKey: "AIzaSyAagJ1cNEhtokqfkCcwzC966kwKR6R45Q0",
   authDomain: "students-data-7cfb3.firebaseapp.com",
@@ -9,4 +14,17 @@ const firebaseConfig = {
   measurementId: "G-MW0XSPG5K0"
 };
 
+<<<<<<< Updated upstream
 const app = initializeApp(firebaseConfig);
+=======
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+// Create a reference to the "students" collection
+const studentsCollection = collection(db, "students");
+
+
+module.exports = db;
+>>>>>>> Stashed changes
