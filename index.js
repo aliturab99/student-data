@@ -7,15 +7,9 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
+
+// Enable CORS for all origins
 app.use(cors());
-
-
-
-
-
-
-
-
 
 const studentsCollectionRef = collection(db, "students");
 
@@ -33,7 +27,7 @@ app.post("/api/students/add-data", async (req, res) => {
         // const docRef = await addDoc(studentsCollectionRef, data);
         // console.log("Student added with ID: ", docRef.id);
 
-        res.status(200).send({ msg: "Student added successfully", added: true });
+        res.status(200).send({ added: true });
     } catch (error) {
         console.error("Error adding student: ", error);
         res.status(500).send("Error adding student");
@@ -98,22 +92,16 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 });
 
 
+console.log(__dirname + '/clientSide/build/index.html')
 
-app.all("*", (req, res) => {
-    res.sendFile(__dirname + '/clientSide/build/index.html')    
-  });
+// app.all("*", (req, res) => {
+//     res.sendFile(__dirname + '/clientSide/build/index.html')    
+// });
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/clientSide/build/index.html'));
+});
 
-app.use((err, req, res, next) => {
-    if (err) {
-        res.status(400).json({ error: err.message });
-    } else {
-        next()
-    }
-})
-
-
-
-
+app.use(express.static(path.join(__dirname, '/clientSide/build')));
 
 app.listen(5000, () => console.log("Server is running on Port 5000"));
