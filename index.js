@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 const express = require("express");
 const cors = require("cors");
 const db = require("./configs/firebaseConfig")
@@ -62,4 +60,3 @@ app.put("/update-student/:id", async (req, res) => {
 });
 
 app.listen(5000, () => console.log("Server is running on Port 5000"));
->>>>>>> Stashed changes
