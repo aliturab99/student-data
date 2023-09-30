@@ -8,6 +8,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+
+
+
+
+
+
+
 const studentsCollectionRef = collection(db, "students");
 
 app.post("/api/students/add-data", async (req, res) => {
@@ -61,7 +69,7 @@ app.put("/api/students/update/:id", async (req, res) => {
 
             await setDoc(studentRef, mergedData);
 
-            console.log({updated: true});
+            console.log({ updated: true });
             res.status(200).send("Student updated successfully");
         } else {
             console.error("Student not found with ID: ", studentId);
@@ -81,12 +89,31 @@ app.delete("/api/students/delete/:id", async (req, res) => {
         await deleteDoc(studentRef);
 
         console.log("Student deleted with ID: ", studentId);
-        res.status(200).send({deleted: true});
+        res.status(200).send({ deleted: true });
     } catch (error) {
         console.error("Error deleting student: ", error);
         res.status(500).send("Error deleting student");
     }
 });
+
+
+
+
+
+app.use(express.static(path.join(__dirname, 'dashboard/build')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dashboard/build/index.html'));
+});
+app.use((err, req, res, next) => {
+    if (err) {
+        res.status(400).json({ error: err.message });
+    } else {
+        next()
+    }
+})
+
+
+
 
 
 app.listen(5000, () => console.log("Server is running on Port 5000"));
