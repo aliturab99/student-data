@@ -101,7 +101,7 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 
 
 // Assuming your server file is in the root directory
-const serverRoot = path.join(__dirname, './clientSide/build');
+const serverRoot = path.join('./clientSide/build');
 
 app.all('*', (req, res) => {
     res.sendFile('index.html', { root: serverRoot });
