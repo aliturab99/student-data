@@ -99,11 +99,9 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 
 
 
-const serverRoot = path.join(__dirname, 'clientSide', 'build');
-console.log('Absolute path to index.html:', path.join(serverRoot, 'index.html'));
-app.all('*', (req, res) => {
-    res.sendFile('index.html', { root: serverRoot });
-});
+app.all("*", (req, res) => {
+    res.sendFile(__dirname + '/client/build/index.html')    
+  });
 
 
 app.use((err, req, res, next) => {
