@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./configs/firebaseConfig")
 const { collection, getDocs, setDoc, doc, addDoc, getDoc, deleteDoc } = require("firebase/firestore/lite");
-const firebaseConfig = require('./configs/firebaseConfig');
+const path = require('path');
+
 
 const app = express();
 app.use(express.json());
