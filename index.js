@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./configs/firebaseConfig")
-const { collection, getDocs, setDoc } = require("firebase/firestore/lite");
+const { collection, getDocs, setDoc, addDoc } = require("firebase/firestore/lite");
 const firebaseConfig = require('./configs/firebaseConfig');
 
 const app = express();
@@ -10,18 +10,25 @@ app.use(cors());
 
 const studentsCollectionRef = collection(db, "students");
 
-app.post("/add-data", async (req, res) => {
+app.post("/api/students/add-data", async (req, res) => {
     try {
-        const data = {
-            rollNumber: "1abc",
-            name: "Ali Turab",
-            class: "Bs",
-        };
 
-        const docRef = await addDoc(studentsCollectionRef, data);
-        console.log("Student added with ID: ", docRef.id);
+        const studentsCollectionRef = collection(db, "students");
 
-        res.status(200).send("Student added successfully");
+        req.body.data.forEach(async (student) => {
+            try {
+                // Use addDoc without passing a Document ID to generate one automatically
+                const docRef = await addDoc(studentsCollectionRef, student);
+                // Log the automatically generated Document ID
+                console.log('Student added to Firebase with ID:', docRef.id);
+            } catch (error) {
+                console.error('Error adding student to Firebase:', error);
+            }
+        });
+        // const docRef = await addDoc(studentsCollectionRef, data);
+        // console.log("Student added with ID: ", docRef.id);
+
+        // res.status(200).send("Student added successfully");
     } catch (error) {
         console.error("Error adding student: ", error);
         res.status(500).send("Error adding student");
