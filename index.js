@@ -100,18 +100,12 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 
 
 const serverRoot = path.join(__dirname, 'clientSide', 'build');
-
+console.log(path.join(__dirname, 'clientSide', 'build'))
 app.all('*', (req, res) => {
     res.sendFile('index.html', { root: serverRoot });
 });
 
-app.use((err, req, res, next) => {
-    if (err) {
-        res.status(400).json({ error: err.message });
-    } else {
-        next()
-    }
-})
+
 app.use((err, req, res, next) => {
     if (err) {
         res.status(400).json({ error: err.message });
