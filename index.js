@@ -102,7 +102,7 @@ app.delete("/api/students/delete/:id", async (req, res) => {
 
 
 app.all("*", (req, res) => {
-    res.sendFile(__dirname + '/client/build/index.html')
+    res.sendFile(__dirname + '/clientSide/build/index.html')
 });
 
 app.use((err, req, res, next) => {
